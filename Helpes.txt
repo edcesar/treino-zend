@@ -5,3 +5,13 @@ sudo composer require zendframework/zftool:dev-master -> Para instalar zftool
 
 Dentro da pasta view, o zend espera uma pasta com o mesmo nome do controller, e um arquivo .phtml com o mesmo nome do metodo, sem o action o final
 
+composer require zendframework/zend-developer-tools:1.1.0
+
+Zend developer tools
+copiado o arquivo vendor\zendframework\zend-developer-tools\config\zenddevelopertools.local.php.dist
+para config/autoload e renomeado para zdt.local.php e configurado para carregar em config->application.config.php
+
+
+
+
+
