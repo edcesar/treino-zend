@@ -1,0 +1,6 @@
+sudo composer require zendframework/zftool:dev-master -> Para instalar zftool
+
+./vendor/bin/zf.php modules -> Para mostrar os modulos
+./vendor/bin/zf.php create module Estoque -> Para criar o modulo Estoque
+
+
