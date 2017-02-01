@@ -3,23 +3,19 @@ namespace Estoque\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Estoque\Entity\Produto;
 
 class IndexController extends AbstractActionController
 {
 	public function indexAction()
 	{
-		$produtos = [];
+		$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+		$repositorio = $entityManager->getRepository('Estoque\Entity\Produto');
 
-		$produtos[] = ['nome' =>'Playstation 4', 'preco' => '2700', 'descricao' => 'Video Game da Sony'];
-		$produtos[] = ['nome' =>'Xbox 360', 'preco' => '2500', 'descricao' => 'Video game da Microsoft'];
-		$produtos[] = ['nome' =>'Nitendo Wii', 'preco' => '1500', 'descricao' => 'Video game da Nitendo'];
-
+		$produtos = $repositorio->findAll();
 
 		$viewParans = array('produtos' => $produtos);
 
-
 		return new ViewModel($viewParans);
-
-
 	}
 }

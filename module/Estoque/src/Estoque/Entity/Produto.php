@@ -29,4 +29,24 @@ class Produto
 	 * @ORM\Column(type="string")
 	 */
 	private $descricao;
+
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	public function getNome()
+	{
+		return $this->nome;
+	}
+
+	public function getPreco()
+	{
+		return $this->preco;
+	}
+
+	public function getDescricao()
+	{
+		return $this->descricao;
+	}
 }

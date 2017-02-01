@@ -12,9 +12,9 @@
 		<?php
 			foreach($produtos as $produto): ?>
 				<tr>
-					<td><?= $produto['nome']; ?></td>
-					<td><?= $produto['preco']; ?></td>
-					<td><?= $produto['descricao']; ?></td>
+					<td><?= $produto->getNome(); ?></td>
+					<td><?= $produto->getPreco(); ?></td>
+					<td><?= $produto->getDescricao(); ?></td>
 				</tr>
 			<?php endforeach;	
 		?>
