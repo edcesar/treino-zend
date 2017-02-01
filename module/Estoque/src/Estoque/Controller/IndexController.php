@@ -7,6 +7,6 @@ class IndexController extends AbstractActionController
 {
 	public function indexAction()
 	{
-		echo 'Bem vindo ao Zend Framework'; exit;
+		echo 'Bem vindo ao Zend Framework'; 
 	}
 }
