@@ -1,1 +1,23 @@
-<h1>Primeira View com Zend Framework</h1>
+<h1>Listagem de produtos</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Preço</th>
+			<th>Descricão</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+			foreach($produtos as $produto): ?>
+				<tr>
+					<td><?= $produto['nome']; ?></td>
+					<td><?= $produto['preco']; ?></td>
+					<td><?= $produto['descricao']; ?></td>
+				</tr>
+			<?php endforeach;	
+		?>
+	</tbody>
+</table>	
+	
