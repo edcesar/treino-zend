@@ -18,4 +18,10 @@ class IndexController extends AbstractActionController
 
 		return new ViewModel($viewParans);
 	}
+
+	public function cadastrarAction()
+	{
+		
+		return new ViewModel();
+	}
 }
