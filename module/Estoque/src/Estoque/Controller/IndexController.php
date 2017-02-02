@@ -4,6 +4,11 @@ namespace Estoque\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Estoque\Entity\Produto;
+use Zend\Mail\Message;
+use Zend\Mail\Transport\Smtp as SmtpTransport;
+use Zend\Mail\Transport\SmtpOptions;
+use Zend\Mime\Message as MimeMessage;
+use Zend\Mime\Part as MimePart;
 
 class IndexController extends AbstractActionController
 {
@@ -92,7 +97,51 @@ class IndexController extends AbstractActionController
 
 	public function contatoAction()
 	{
-		
+		if ($this->request->isPost()) {
+			
+			$nome = $this->request->getPost('nome');
+			$email = $this->request->getPost('email');
+			$mensagem = $this->request->getPost('mensagem');
+
+			$msgHtml = "
+				<b>Nome: </b> {$nome}, <br />
+				<b>Email: </b> {$email}, <br />
+				<b>Mensagem: </b> {$mensagem}, <br />
+			";
+
+			$htmlPart = new MimePart($msgHtml);
+			$htmlPart->type = 'text/html';
+
+			$htmlMsg = new MimeMessage();
+			$htmlMsg->addPart($htmlPart);
+
+			$email = new Message();
+			$email->addTo('edcesar@edcesar.com');
+			$email->setSubject('Contato feito pelo site');
+			$email->addFrom('edcesar@edcesar.com');
+
+			$email->setBody($htmlMsg);
+
+			$config = [
+			   'host' => 'smtp.gmail.com',
+			   'connection_class' => 'login',
+			   'connection_config' => [
+			     'ssl' => 'tls',
+			     'username' => 'meuEmail',
+			     'password' => 'minhaSenha'
+			   ],
+			   'port' => 587
+			];
+
+			$transport = new SmtpTransport();
+			$options = new SmtpOptions($config);
+			$transport->setOptions($options);
+			$transport->send($email);
+
+			$this->flashMessenger()->addMessage('E-mail enviado com sucesso!');
+			return $this->redirect()->toUrl('index');
+
+		}
 		return new ViewModel();
 	}
 }
