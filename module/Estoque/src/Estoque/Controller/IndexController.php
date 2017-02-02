@@ -14,7 +14,8 @@ class IndexController extends AbstractActionController
 {
 	public function indexAction()
 	{
-		$pagina = 1;
+
+		$pagina = $this->params()->fromRoute('page', 1);
 		$qtdPorPagina = 1;
 		$offSet = ($pagina -1) * $qtdPorPagina;
 
@@ -23,7 +24,10 @@ class IndexController extends AbstractActionController
 
 		$produtos = $repositorio->getProdutosPaginados($qtdPorPagina, $offSet);
 
-		$viewParans = array('produtos' => $produtos);
+		$viewParans = array(
+			'produtos' => $produtos,
+			'qtdPorPagina' => $qtdPorPagina,
+			);
 
 		return new ViewModel($viewParans);
 	}
