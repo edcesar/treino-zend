@@ -57,17 +57,17 @@ class Produto
 		return $this->descricao;
 	}
 
-	private function setNome($nome)
+	public function setNome($nome)
 	{
 		$this->nome = $nome;
 	}
 
-	private function setPreco($preco)
+	public function setPreco($preco)
 	{
 		$this->preco = $preco;
 	}
 
-	private function setDescricao($descricao)
+	public function setDescricao($descricao)
 	{
 		$this->descricao = $descricao;
 	}

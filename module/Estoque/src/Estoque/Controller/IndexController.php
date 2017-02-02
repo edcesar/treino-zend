@@ -58,4 +58,35 @@ class IndexController extends AbstractActionController
 
 		return new ViewModel(['id' => $id]);
 	}
+
+	public function editarAction()
+	{
+
+		$id = $this->params()->fromRoute('id');
+
+		if (is_null($id)) {
+			$id = $this->request->getPost('id');
+		}
+
+		$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+		$repositorio = $entityManager->getRepository('Estoque\Entity\Produto');
+
+		$produto = $repositorio->find($id);
+
+		if ($this->request->isPost()) {
+
+			$produto->setNome($this->request->getPost('nome'));
+			$produto->setPreco($this->request->getPost('preco'));
+			$produto->setDescricao($this->request->getPost('descricao'));
+
+			$entityManager->persist($produto);
+			$entityManager->flush();
+
+			$this->flashMessenger()->addSuccessMessage('Produto alterado com sucesso!');
+
+			return $this->redirect()->toUrl('index');
+		}
+
+		return new ViewModel(['produto' => $produto]);
+	}
 }

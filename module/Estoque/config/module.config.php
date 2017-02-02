@@ -42,6 +42,12 @@ return array(
             __DIR__ . '/../view',
         ),
       ),
+      'view_helpers' => array(
+        'invokables' => array(
+          'FlashHelper' => 'Estoque\View\Helper\FlashHelper'
+          )
+        ),
+      
 	      'doctrine' => array(
           'driver' => array(
             'application_entities' => array(
@@ -57,5 +63,6 @@ return array(
             ),
         ),
     ),
+      
 	  
     );
