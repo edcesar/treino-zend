@@ -30,6 +30,13 @@ class Produto
 	 */
 	private $descricao;
 
+	public function __construct($nome, $preco, $descricao)
+	{
+		$this->setNome($nome);
+		$this->setPreco($preco);
+		$this->setDescricao($descricao);
+	}
+
 	public function getId()
 	{
 		return $this->id;
@@ -48,5 +55,20 @@ class Produto
 	public function getDescricao()
 	{
 		return $this->descricao;
+	}
+
+	private function setNome($nome)
+	{
+		$this->nome = $nome;
+	}
+
+	private function setPreco($preco)
+	{
+		$this->preco = $preco;
+	}
+
+	private function setDescricao($descricao)
+	{
+		$this->descricao = $descricao;
 	}
 }
