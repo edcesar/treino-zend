@@ -42,7 +42,8 @@ return array(
       ),
 	    'controllers' => array(
 	        'invokables' => array(
-	            'Estoque\Controller\Index' => 'Estoque\Controller\IndexController'
+	            'Estoque\Controller\Index' => 'Estoque\Controller\IndexController',
+              'Estoque\Controller\Usuario' => 'Estoque\Controller\UsuarioController',
 	        ),
 	    ),
 	    'view_manager' => array(
