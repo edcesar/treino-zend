@@ -89,4 +89,10 @@ class IndexController extends AbstractActionController
 
 		return new ViewModel(['produto' => $produto]);
 	}
+
+	public function contatoAction()
+	{
+		
+		return new ViewModel();
+	}
 }
