@@ -16,7 +16,7 @@ class IndexController extends AbstractActionController
 	{
 
 		$pagina = $this->params()->fromRoute('page', 1);
-		$qtdPorPagina = 1;
+		$qtdPorPagina = 7;
 		$offSet = ($pagina -1) * $qtdPorPagina;
 
 		$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
