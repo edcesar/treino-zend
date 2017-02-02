@@ -16,7 +16,7 @@
 					<td><?= $produto->getNome(); ?></td>
 					<td><?= $produto->getPreco(); ?></td>
 					<td><?= $produto->getDescricao(); ?></td>
-					<td><a href="<?= $this->url('application', ['action' => 'remover']);?>" class="btn btn-danger btn-sm">Remover</a></td>
+					<td><a href="<?= $this->url('application', ['action' => 'remover', 'id' => $produto->getId()]);?>" class="btn btn-danger btn-sm">Remover</a></td>
 				</tr>
 			<?php endforeach;	
 		?>

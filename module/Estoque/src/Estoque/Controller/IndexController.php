@@ -41,6 +41,21 @@ class IndexController extends AbstractActionController
 
 	public function removerAction()
 	{
-		return new ViewModel();
+		$id = $this->params()->fromRoute('id');
+
+		if ($this->request->isPost()) {
+			$id = $this->request->getPost('id');
+
+			$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+			$repositorio = $entityManager->getRepository('Estoque\Entity\Produto');
+
+			$produto = $repositorio->find($id);
+			$entityManager->remove($produto);
+			$entityManager->flush();
+
+			return $this->redirect()->toUrl('index');
+		}
+
+		return new ViewModel(['id' => $id]);
 	}
 }
