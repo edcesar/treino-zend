@@ -14,10 +14,14 @@ class IndexController extends AbstractActionController
 {
 	public function indexAction()
 	{
+		$pagina = 1;
+		$qtdPorPagina = 1;
+		$offSet = ($pagina -1) * $qtdPorPagina;
+
 		$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 		$repositorio = $entityManager->getRepository('Estoque\Entity\Produto');
 
-		$produtos = $repositorio->findAll();
+		$produtos = $repositorio->getProdutosPaginados($qtdPorPagina, $offSet);
 
 		$viewParans = array('produtos' => $produtos);
 
