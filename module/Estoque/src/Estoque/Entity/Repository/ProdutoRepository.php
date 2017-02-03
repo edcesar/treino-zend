@@ -16,7 +16,7 @@ class ProdutoRepository extends EntityRepository
 			->from('Estoque\Entity\Produto', 'p')
 			->setMaxResults($qtdPorPagina)
 			->setFirstResult($offSet)
-			->orderBy('p.id');
+			->orderBy('p.id', 'desc');
 
 		$query = $queryBuilder->getQuery();
 		

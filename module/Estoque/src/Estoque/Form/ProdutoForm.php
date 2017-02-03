@@ -21,6 +21,9 @@ class ProdutoForm extends Form
 		    	'class' => 'form-control',
 		    	'placeholder' => 'Digite o nome do produto',
 		    	'alt' => 'Digite o nome do produto',
+		    	'minlength' => '3', # Não funciona!?
+		    	'required' => true,
+
 		    ]	
 		]);
 
@@ -34,6 +37,7 @@ class ProdutoForm extends Form
  		        'class' => 'form-control',
  		        'placeholder' => 'Digite o preço do produto',
  		        'alt' => 'Digite o preço do produto',
+ 		        'required' => true,
  		    ]	
 		]);
 
@@ -46,7 +50,10 @@ class ProdutoForm extends Form
  		        'class' => 'form-control',
  		        'placeholder' => 'Digite a descrição do produto',
  		        'alt' => 'Digite a descrição do produto',
+ 		        'required' => true
  		    ]	
 		]);
+
+		$this->add(new Element\Csrf('csrf'));
 	}
 }
