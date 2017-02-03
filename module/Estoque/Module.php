@@ -18,4 +18,15 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return [
+         'factories' => [
+            'Zend\Authentication\AuthenticationService' => function($serviceManager){
+                return $serviceManager->get('doctrine.authenticationservice.orm_default');
+            }
+         ]
+        ];
+    }
 }

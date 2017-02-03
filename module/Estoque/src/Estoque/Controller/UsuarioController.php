@@ -10,4 +10,13 @@ class UsuarioController extends AbstractActionController
 	{
 		return new ViewModel();
 	}
+
+	public function loginAction()
+	{
+		if ($this->request->isPost()) {
+			
+		} else {
+			return $this->redirect()->toUrl('/Usuario/index');
+		}
+	}
 }
