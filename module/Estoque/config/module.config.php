@@ -90,6 +90,9 @@ return array(
                 'identity_class' => 'Estoque\Entity\Usuario',
                 'identity_property' => 'email',
                 'credential_property' => 'senha',
+                'credentialCallable' => function($user ,$senha){
+                  return $user->getSenha() == md5($senha);
+                }
               ]
             ],
     ),

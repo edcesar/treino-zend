@@ -39,4 +39,12 @@ class UsuarioController extends AbstractActionController
 			return $this->redirect()->toUrl('/Usuario/index');
 		}
 	}
+
+	public function logoutAction()
+	{
+		 $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+		 $authService->clearIdentity();
+
+		 $this->redirect()->toUrl('/Usuario/index');
+	}
 }

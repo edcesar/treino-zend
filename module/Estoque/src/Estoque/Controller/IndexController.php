@@ -12,6 +12,7 @@ use Zend\Mime\Part as MimePart;
 
 class IndexController extends AbstractActionController
 {
+
 	public function indexAction()
 	{
 
@@ -32,8 +33,18 @@ class IndexController extends AbstractActionController
 		return new ViewModel($viewParans);
 	}
 
+	private function protectPage()
+	{
+		if ($this->identity()) { // por algum motivo só retorna null!!!
+			return $this->redirect()->toUrl('/Usuario/index');
+		}
+	}
+
 	public function cadastrarAction()
 	{
+
+		 $this->protectPage();
+
 		if ($this->request->isPost()) {
 			
 			$nome = $this->request->getPost('nome');
