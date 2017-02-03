@@ -8,6 +8,7 @@
 <label for="nome">Nome:</label>
 <?php 
 	echo $this->formInput($form->get('nome'));	
+	echo $this->formElementErrors()->render($form->get('nome'));
 ?>
 </div>
 

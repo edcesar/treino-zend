@@ -44,24 +44,31 @@ class IndexController extends AbstractActionController
 	public function cadastrarAction()
 	{
 
-		 $this->protectPage();
-		 	
+		$this->protectPage();
+		
+		$form = new ProdutoForm();	
+		
 		if ($this->request->isPost()) {
-			
+		
 			$nome = $this->request->getPost('nome');
 			$preco = $this->request->getPost('preco');
 			$descricao = $this->request->getPost('descricao');
 
 			$produtos = new Produto($nome, $preco, $descricao);
 
-			$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-			$entityManager->persist($produtos);
-			$entityManager->flush();
+			$form->setInputFilter($produtos->getInputFilter());
+			$form->setData($this->request->getPost());
 
-			return $this->redirect()->toUrl('index');
+			if ($form->isValid()) {
+				$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+				$entityManager->persist($produtos);
+				$entityManager->flush();
+
+				return $this->redirect()->toUrl('index');
+			}
+			
 		}
 
-	    $form = new ProdutoForm();
 		return new ViewModel(['form' => $form]);
 	}
 
