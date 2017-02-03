@@ -82,15 +82,16 @@ return array(
                     'Estoque\Entity' => 'application_entities'
                 ),
             ),
-            'authentication' => [
+            
+        ),
+          'authentication' => [
               'orm_default' => [
                 'object_manager' => 'Doctrine\ORM\EntityManager',
-                'identity_class' => 'Estoque\Entity\Usuaio',
+                'identity_class' => 'Estoque\Entity\Usuario',
                 'identity_property' => 'email',
                 'credential_property' => 'senha',
               ]
-            ]
-        ),
+            ],
     ),
       
 	  
