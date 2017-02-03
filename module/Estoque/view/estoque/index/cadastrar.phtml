@@ -1,24 +1,34 @@
 <h1>Cadastro de Produtos</h1>
 
-<form action="" method="post">
+<?php
+	echo $this->form()->openTag($form);
+?>
 
-	<div class="form-group">
-		<label for="nome">Nome</label>
-		<input type="text" class="form-control" name="nome" id="nome" alt="Digite o nome do produto" placeholder="Digite o nome do produto">
-    </div>
+<div class="form-group">
+<label for="nome">Nome:</label>
+<?php 
+	echo $this->formInput($form->get('nome'));	
+?>
+</div>
 
-	<div class="form-group">
-		<label for="preco">Preço</label>
-		<input type="text" class="form-control" name="preco" id="preco" alt="Digite o preço do produto" placeholder="Digite o preço do produto">
-	</div>
-	
-	<div class="form-group">
-		<label for="descricao">Descrição</label>
-		<textarea class="form-control" name="descricao" id="descricao" alt="Digite a descricão do produto" placeholder="Digite a descricão do produto"></textarea>
-	</div>
+<div class="form-group">
+<label for="preco">Preço:</label>
+<?php 
+	echo $this->formInput($form->get('preco'));	
+?>
+</div>
 
-	<div class="form-group">
-		<button type="submit" class="btn btn-primary">Cadastrar</button>
-	</div>
+<div class="form-group">
+<label for="descricao">Descrição:</label>
+<?php 
+	echo $this->formTextarea($form->get('descricao'));	
+?>
+</div>
 
-</form>
+<div class="form-group">
+    <button class="btn btn-primary">Cadastrar produto</button>
+</div>
+<?php  
+	echo $this->form()->closeTag();
+?>
+

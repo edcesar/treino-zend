@@ -9,6 +9,7 @@ use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Mail\Transport\SmtpOptions;
 use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Part as MimePart;
+use Estoque\Form\ProdutoForm;
 
 class IndexController extends AbstractActionController
 {
@@ -44,7 +45,7 @@ class IndexController extends AbstractActionController
 	{
 
 		 $this->protectPage();
-
+		 	
 		if ($this->request->isPost()) {
 			
 			$nome = $this->request->getPost('nome');
@@ -60,7 +61,8 @@ class IndexController extends AbstractActionController
 			return $this->redirect()->toUrl('index');
 		}
 
-		return new ViewModel();
+	    $form = new ProdutoForm();
+		return new ViewModel(['form' => $form]);
 	}
 
 	public function removerAction()
