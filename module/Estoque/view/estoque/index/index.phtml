@@ -6,6 +6,7 @@
 			<th>Nome</th>
 			<th>Preço</th>
 			<th>Descricão</th>
+			<th>Categoria</th>
 			<th>Ações</th>
 		</tr>
 	</thead>
@@ -16,6 +17,7 @@
 					<td><?= $produto->getNome(); ?></td>
 					<td><?= $produto->getPreco(); ?></td>
 					<td><?= $produto->getDescricao(); ?></td>
+					<td><?= $produto->getCategoria()->getNome(); ?></td>
 					<td><a href="<?= $this->url('application', ['action' => 'remover', 'id' => $produto->getId()]);?>" class="btn btn-danger btn-sm">Remover</a>
 					    <a href="<?= $this->url('application', ['action' => 'editar', 'id' => $produto->getId()]);?>" class="btn btn-info btn-sm">Editar</a>
 					</td>
