@@ -10,6 +10,7 @@ use Zend\Mail\Transport\SmtpOptions;
 use Zend\Mime\Message as MimeMessage;
 use Zend\Mime\Part as MimePart;
 use Estoque\Form\ProdutoForm;
+use Estoque\Entity\Categoria;
 
 class IndexController extends AbstractActionController
 {
@@ -46,7 +47,10 @@ class IndexController extends AbstractActionController
 
 		$this->protectPage();
 		
-		$form = new ProdutoForm();	
+		$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+		
+		$categoriaRepository = $entityManager->getRepository('Estoque\Entity\Categoria');
+		$form = new ProdutoForm($entityManager);	
 		
 		if ($this->request->isPost()) {
 		
@@ -54,13 +58,15 @@ class IndexController extends AbstractActionController
 			$preco = $this->request->getPost('preco');
 			$descricao = $this->request->getPost('descricao');
 
+			$categoria = $categoriaRepository->find($this->request->getPost('categoria'));
 			$produtos = new Produto($nome, $preco, $descricao);
+
+			$produtos->setCategoria($categoria);
 
 			$form->setInputFilter($produtos->getInputFilter());
 			$form->setData($this->request->getPost());
 
 			if ($form->isValid()) {
-				$entityManager  = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 				$entityManager->persist($produtos);
 				$entityManager->flush();
 

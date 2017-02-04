@@ -25,7 +25,7 @@ class Categoria
 	 */
 	private $produto;
 
-	public function __construct($id, $nome)
+	public function __construct($nome, $id = null)
 	{
 		$this->id = $id;
 		$this->nome = $nome;

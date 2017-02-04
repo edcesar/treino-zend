@@ -3,12 +3,13 @@ namespace Estoque\Form;
 
 use Zend\Form\Form;
 use Zend\Form\Element;
+use Doctrine\ORM\EntityManager;
 
 class ProdutoForm extends Form
 {
 	private $add;
 
-	public function __construct()
+	public function __construct(EntityManager $entityManager)
 	{
 		parent::__construct('formProduto');	
 
@@ -55,5 +56,20 @@ class ProdutoForm extends Form
 		]);
 
 		$this->add(new Element\Csrf('csrf'));
+
+		$this->add([
+			'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+			'name' => 'categoria',
+			'options' => [
+				'object_manager' => $entityManager,
+				'target_class' => 'Estoque\Entity\Categoria',
+				'property' => 'nome',
+				'empty_option' => 'escolha uma categoria',
+			],
+			'attributes' => [
+					'id' => 'categoria',
+					'class' => 'form-control'
+				]
+		]);
 	}
 }
