@@ -33,11 +33,27 @@ class Produto implements InputFilterAwareInterface
 	 */
 	private $descricao;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Estoque\Entity\Categoria", inversedBy = "produto")
+	 * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id", nullable = false)
+	 */
+	private $categoria;
+
 	public function __construct($nome, $preco, $descricao)
 	{
 		$this->setNome($nome);
 		$this->setPreco($preco);
 		$this->setDescricao($descricao);
+	}
+
+	public function setCategoria(Categoria $categoria)
+	{
+		$this->categoria = $categoria;
+	}
+
+	public function getCategoria()
+	{
+		return $this->categoria;
 	}
 
 	public function getId()
